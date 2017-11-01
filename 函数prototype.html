@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+  
+    // function Foo(firstName,lastName){
+    //   this.firstName = firstName;
+    //   this.lastName = lastName;
+    // }
+    // Foo.prototype.logName = function(){
+    //   Foo.combineName();
+    //   console.log(this.fullName);
+    // }
+    // Foo.prototype.combineName = function(){
+    //   this.fullName = `$(this.firstName) $(this.lastName)`
+    // }
+    // var foo = new Foo('sanfeng','zhang');
+    // foo.logName() // Foo.combineName is not a function
+
+    function Foo(firstName,lastName){
+      this.firstName = firstName;
+      this.lastName = lastName;
+    }
+
+    Foo.prototype.logName = function(){
+      this.combineName(); // Foo 函数，自己里面没有可以去自身的原型里面找
+      console.log(Foo.combineName); // underfine 
+      console.log(Foo.prototype); // Object 里面是原型的属性和方法
+      console.log(Foo.prototype.combineName); // 原样输出函数
+      console.log(this); // 函数Foo
+    }
+    Foo.prototype.combineName = function(){
+      this.fullName = `${this.firstName} ${this.lastName}`
+      console.log(this.fullName);
+    }
+    var foo = new Foo('sanfeng','zhang');
+    foo.logName() 
+
+  
+  </script>
+</body>
+</html>
